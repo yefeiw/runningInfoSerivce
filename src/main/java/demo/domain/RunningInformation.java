@@ -34,5 +34,6 @@ public class RunningInformation {
     private int heartRate;
     private Date tiemstamp  = new Date();
     private UserInfo userInfo;
+    private HealthWarningLevel healthWarningLevel;
 
 }
