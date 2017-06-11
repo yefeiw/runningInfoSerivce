@@ -27,7 +27,7 @@ public class RunningInformation {
 
     @Id
     @GeneratedValue
-        private Long runningId;
+        private String runningId;
 
     private String latitude;
     private String longitude;

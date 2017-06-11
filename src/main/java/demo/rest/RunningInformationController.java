@@ -23,8 +23,9 @@ public class RunningInformationController {
     }
 
     @RequestMapping(value = "/running",method = RequestMethod.GET)
-    public Page<RunningInformation> display(@RequestParam(name = "page")int page) {
-        return this.runningInformationService.findAllOrderByHealthWarningLevelAndHeartRate(new PageRequest(page,2));
+    public Page<RunningInformation> display() {
+        //page: first page(0), page size 2
+        return this.runningInformationService.findAllOrderByHealthWarningLevelAndHeartRate(new PageRequest(0,2));
     }
 
     @RequestMapping(value = "/remove",method = RequestMethod.POST)
@@ -32,7 +33,7 @@ public class RunningInformationController {
         this.runningInformationService.deleteByRunningID(id);
     }
 
-    @RequestMapping(value="/running",method = RequestMethod.POST)
+    @RequestMapping(value="/add",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void upload(@RequestBody List<RunningInformation> informationList) {
         this.runningInformationService.SaveRunningInformation(informationList);
