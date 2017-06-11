@@ -10,7 +10,7 @@ import java.util.*;
  */
 public interface RunningInformationService {
     Page<RunningInformation> findByHeartRateGreaterThan(int heartRate, Pageable pageable);
-    void deleteByRunningID(String id);
+    void removeRunningInformationsByRunningId(String id);
     List<RunningInformation> saveRunningInformation(List<RunningInformation> information);
 
 }

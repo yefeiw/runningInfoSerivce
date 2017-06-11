@@ -22,8 +22,8 @@ public class RunningInformationServiceImpl implements RunningInformationService 
     }
 
     @Override
-    public void deleteByRunningID(String id) {
-        repository.deleteByRunningId(id);
+    public void removeRunningInformationsByRunningId(String id) {
+        repository.removeRunningInformationsByRunningId(id);
     }
 
 

@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 /**
  * Created by vagrant on 6/9/17.
@@ -60,10 +61,10 @@ public class RunningInformationController {
         return new ResponseEntity<List<JSONObject>>(results, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/remove",method = RequestMethod.DELETE)
-    public void deleteByRunningId(@RequestBody String id) {
-        System.out.println("deleting running ID "+id);
-        this.runningInformationService.deleteByRunningID(id);
+    @RequestMapping(value = "/remove/{runningId}",method = RequestMethod.POST)
+    public void deleteByRunningId(@PathVariable String runningId) {
+        System.out.println("deleting running ID "+runningId);
+        this.runningInformationService.removeRunningInformationsByRunningId(runningId);
     }
 
     @RequestMapping(value="/add",method = RequestMethod.POST)
