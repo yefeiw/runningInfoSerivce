@@ -9,8 +9,9 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by vagrant on 6/9/17.
  */
+
 public interface RunningInfoRepository extends JpaRepository<RunningInformation,Long> {
-    Page<RunningInformation> findAllOrOrderByHealthWarningLevelAndHeartRate(Pageable pageable);
+    Page<RunningInformation> findAllOrderByHealthWarningLevelAndHeartRate(Pageable pageable);
     void deleteByRunningId(@Param("runningId") String id);
 
 }

@@ -4,9 +4,11 @@ import demo.domain.RunningInformation;
 import demo.service.RunningInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by vagrant on 6/9/17.
@@ -21,8 +23,8 @@ public class RunningInformationController {
     }
 
     @RequestMapping(value = "/running",method = RequestMethod.GET)
-    public Page<RunningInformation> display(@RequestParam(name = "page")int page))
-        return this.runningInformationService.findAllOrOrderByHealthWarningLevelAndHeartRate(new PageRequest(page,2));
+    public Page<RunningInformation> display(@RequestParam(name = "page")int page) {
+        return this.runningInformationService.findAllOrderByHealthWarningLevelAndHeartRate(new PageRequest(page,2));
     }
 
     @RequestMapping(value = "/remove",method = RequestMethod.POST)
@@ -34,4 +36,5 @@ public class RunningInformationController {
     @ResponseStatus(HttpStatus.CREATED)
     public void upload(@RequestBody List<RunningInformation> informationList) {
         this.runningInformationService.SaveRunningInformation(informationList);
+    }
 }

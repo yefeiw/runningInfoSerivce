@@ -12,6 +12,8 @@ package demo.domain;
         import javax.persistence.GeneratedValue;
         import javax.persistence.Id;
         import java.util.Date;
+        import java.util.Random;
+
 /**
  * Created by yefeiw on 6/8/17.
  */
@@ -32,8 +34,25 @@ public class RunningInformation {
     private double runningDistance;
     private double totalRunningTime;
     private int heartRate;
-    private Date tiemstamp  = new Date();
+    private Date timestamp  = new Date();
+    private Random rand;
+    @Embedded
+    @AttributeOverrides({
+          @AttributeOverride(name = "username",column = @Column(name = "user_username")),
+            @AttributeOverride(name = "address",column = @Column(name = "user_address"))
+    })
     private UserInfo userInfo;
     private HealthWarningLevel healthWarningLevel;
 
+    public RunningInformation() {
+        this.userInfo = null;
+        this.rand = new Random();
+        this.heartRate = 60+rand.nextInt(60);
+    }
+
+    public RunningInformation(UserInfo userInfo) {
+        this.userInfo = userInfo;
+        this.rand = new Random();
+        this.heartRate = 60 + rand.nextInt(60);
+    }
 }

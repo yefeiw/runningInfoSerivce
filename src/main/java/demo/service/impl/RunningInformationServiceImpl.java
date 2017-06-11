@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
 /**
  * Created by vagrant on 6/9/17.
@@ -14,24 +15,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class RunningInformationServiceImpl implements RunningInformationService {
     private RunningInfoRepository repository;
+
     @Autowired
     public RunningInformationServiceImpl(RunningInfoRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public void deleteByRunningId(String id) {
+    public void deleteByRunningID(String id) {
         repository.deleteByRunningId(id);
     }
 
     @Override
-    public Page<RunningInformation> findAllOrOrderByHealthWarningLevelAndHeartRate(Pageable pageable) {
-        return repository.findAllOrOrderByHealthWarningLevelAndHeartRate(pageable);
+    public Page<RunningInformation> findAllOrderByHealthWarningLevelAndHeartRate(Pageable pageable) {
+        return repository.findAllOrderByHealthWarningLevelAndHeartRate(pageable);
 
     }
 
     @Override
-    public List<RunningInformation> saveRunningInformation(List<RunningInformation> informations) {
+    public List<RunningInformation> SaveRunningInformation(List<RunningInformation> informations) {
         return repository.save(informations);
     }
 }
