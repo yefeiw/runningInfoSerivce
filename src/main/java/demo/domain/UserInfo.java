@@ -1,7 +1,10 @@
 package demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Embeddable;
 
@@ -11,16 +14,15 @@ import javax.persistence.Embeddable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Embeddable
+@RequiredArgsConstructor
 public class UserInfo {
     private String username;
     //TODO: make this a location class in the future
     private String address;
 
-    public UserInfo() {
-        //empty constructor
-    }
-
-    public UserInfo(String username, String address) {
+    @JsonCreator
+    public UserInfo(@JsonProperty("username") String username,
+                    @JsonProperty("address") String address) {
         this.username = username;
         this.address = address;
     }

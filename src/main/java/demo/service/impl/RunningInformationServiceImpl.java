@@ -26,14 +26,14 @@ public class RunningInformationServiceImpl implements RunningInformationService 
         repository.deleteByRunningId(id);
     }
 
-    @Override
-    public Page<RunningInformation> findAllOrderByHealthWarningLevelAndHeartRate(Pageable pageable) {
-        return repository.findAllOrderByHealthWarningLevelAndHeartRate(pageable);
 
+    @Override
+    public Page<RunningInformation> findByHeartRateGreaterThan(int heartRate, Pageable pageable) {
+        return repository.findByHeartRateGreaterThan(heartRate, pageable);
     }
 
     @Override
-    public List<RunningInformation> SaveRunningInformation(List<RunningInformation> informations) {
-        return repository.save(informations);
+    public List<RunningInformation> saveRunningInformation(List<RunningInformation> informationList) {
+        return repository.save(informationList);
     }
 }
